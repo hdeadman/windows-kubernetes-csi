@@ -22,7 +22,7 @@ jobs:
     strategy:
       matrix:
         windows_version: ["2019", "2022"]
-        images: [ {image: csi-driver-smb , version: 1.17.0}, {image: livenessprobe , version: v2.15.0}, {image: node-driver-registrar , version: v2.13.0} ]
+        images: [ {image: csi-driver-smb , version: v1.17.0}, {image: livenessprobe , version: v2.15.0}, {image: node-driver-registrar , version: v2.13.0} ]
       fail-fast: false
     runs-on: "windows-${{ matrix.windows_version }}"
     steps:
@@ -35,7 +35,7 @@ jobs:
     - run: git config --global core.autocrlf input
     - name: Checkout
       uses: actions/checkout@v4
-    - name: Log in to the Container registry
+    - name: Log in to the Github Container registry
       uses: docker/login-action@v3
       with:
         registry: ${{ env.REGISTRY }}
