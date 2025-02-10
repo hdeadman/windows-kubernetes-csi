@@ -1,6 +1,6 @@
 ARG OSVERSION
-ARG COREVERSION=1.17.0
-ARG CORE_IMAGE=sig-storage_smbplugin:${COREVERSION}
+ARG COREVERSION=v1.17.0
+ARG CORE_IMAGE=sig-storage/sig-storage_smbplugin:${COREVERSION}
 ARG BASE_IMAGE=nanoserver:${OSVERSION}
 ARG REGISTRY=mcr.microsoft.com/windows
 ARG CORE_REGISTRY=registry.k8s.io
