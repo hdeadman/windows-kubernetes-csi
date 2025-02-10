@@ -33,6 +33,17 @@ jobs:
     - run: git config --global core.autocrlf input
     - name: Checkout
       uses: actions/checkout@v4
+    - name: Log in to the Container registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    #- name: Log in to Docker Hub
+    #  uses: docker/login-action@v3
+    #  with:
+    #    username: ${{ secrets.DOCKER_USERNAME }}
+    #    password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Docker Build
       id: docker_build
       run: |
@@ -63,14 +74,3 @@ jobs:
         docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         docker push ${{ env.REGISTRY }}/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         #docker push dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
-    - name: Log in to the Container registry
-      uses: docker/login-action@v3
-      with:
-        registry: ${{ env.REGISTRY }}
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
