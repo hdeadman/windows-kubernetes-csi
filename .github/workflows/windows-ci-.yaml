@@ -41,7 +41,7 @@ jobs:
         CORE_VERSION=1.17.0
         IMAGE_NAME=csi-driver-smb
         echo "Building ${IMAGE_NAME} with ${CORE_VERSION}"
-        docker build -f ${IMAGE_NAME}/Dockerfile.windows --build-arg OSVERSION=ltsc${{ matrix.windows_version }} --build-arg CORE_VERSION=${CORE_VERSION} --tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
+        docker build -f ${IMAGE_NAME}/Dockerfile.windows --build-arg OSVERSION=ltsc${{ matrix.windows_version }} --build-arg CORE_VERSION=${CORE_VERSION} --tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${IMAGE_NAME}
         docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${{ env.REGISTRY }}/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         docker push ${{ env.REGISTRY }}/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
@@ -50,7 +50,7 @@ jobs:
         CORE_VERSION=2.15.0
         IMAGE_NAME=livenessprobe
         echo "Building ${IMAGE_NAME} with ${CORE_VERSION}"
-        docker build -f ${IMAGE_NAME}/Dockerfile.windows --build-arg OSVERSION=ltsc${{ matrix.windows_version }} --build-arg CORE_VERSION=${CORE_VERSION} --tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
+        docker build -f ${IMAGE_NAME}/Dockerfile.windows --build-arg OSVERSION=ltsc${{ matrix.windows_version }} --build-arg CORE_VERSION=${CORE_VERSION} --tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${IMAGE_NAME}
         docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${{ env.REGISTRY }}/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         docker push ${{ env.REGISTRY }}/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
@@ -59,7 +59,7 @@ jobs:
         CORE_VERSION=2.13.0
         IMAGE_NAME=node-driver-registrar
         echo "Building ${IMAGE_NAME} with ${CORE_VERSION}"
-        docker build -f ${IMAGE_NAME}/Dockerfile.windows --build-arg OSVERSION=ltsc${{ matrix.windows_version }} --build-arg CORE_VERSION=${CORE_VERSION} --tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
+        docker build -f ${IMAGE_NAME}/Dockerfile.windows --build-arg OSVERSION=ltsc${{ matrix.windows_version }} --build-arg CORE_VERSION=${CORE_VERSION} --tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${IMAGE_NAME}
         docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${{ env.REGISTRY }}/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         docker push ${{ env.REGISTRY }}/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
