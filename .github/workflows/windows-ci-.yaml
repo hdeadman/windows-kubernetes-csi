@@ -2,11 +2,10 @@ name: Windows Kubernetes CSI
 on:
   push:
     branches:
-    - master
+    - main
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: "${{ github.repository }}-windows-pause"
 
 jobs:
 
