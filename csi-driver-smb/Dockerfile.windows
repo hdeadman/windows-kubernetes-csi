@@ -1,0 +1,16 @@
+ARG OSVERSION
+ARG COREVERSION=1.17.0
+ARG CORE_IMAGE=sig-storage_smbplugin:${COREVERSION}
+ARG BASE_IMAGE=nanoserver:${OSVERSION}
+ARG REGISTRY=mcr.microsoft.com/windows
+ARG CORE_REGISTRY=registry.k8s.io
+
+FROM ${CORE_REGISTRY}/${CORE_IMAGE} AS core
+FROM ${REGISTRY}/${BASE_IMAGE}
+LABEL description="CSI SMB plugin"
+
+COPY --from=core /smbplugin.exe /smbplugin.exe
+COPY --from=core /Windows/System32/netapi32.dll /Windows/System32/netapi32.dll
+
+USER ContainerAdministrator
+ENTRYPOINT ["/smbplugin.exe"]
