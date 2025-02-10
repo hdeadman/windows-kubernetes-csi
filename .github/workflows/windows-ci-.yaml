@@ -52,8 +52,8 @@ jobs:
         IMAGE_NAME=csi-driver-smb
         echo "Building ${IMAGE_NAME} with ${CORE_VERSION}"
         docker build -f ${IMAGE_NAME}/Dockerfile.windows --build-arg OSVERSION=ltsc${{ matrix.windows_version }} --build-arg COREVERSION=${CORE_VERSION} --tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${IMAGE_NAME}
-        docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${{ env.REGISTRY }}/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
-        docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} dtrajd/${{ github.repository }}-${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
+        docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${{ env.REGISTRY }}/${{ github.repository }}-${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
+        docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         docker push ${{ env.REGISTRY }}/${{ github.repository }}-${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         #docker push dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
 
@@ -61,8 +61,8 @@ jobs:
         IMAGE_NAME=livenessprobe
         echo "Building ${IMAGE_NAME} with ${CORE_VERSION}"
         docker build -f ${IMAGE_NAME}/Dockerfile.windows --build-arg OSVERSION=ltsc${{ matrix.windows_version }} --build-arg COREVERSION=${CORE_VERSION} --tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${IMAGE_NAME}
-        docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${{ env.REGISTRY }}/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
-        docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} dtrajd/${{ github.repository }}-${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
+        docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${{ env.REGISTRY }}/${{ github.repository }}-${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
+        docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         docker push ${{ env.REGISTRY }}/${{ github.repository }}-${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         #docker push dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
 
@@ -70,7 +70,7 @@ jobs:
         IMAGE_NAME=node-driver-registrar
         echo "Building ${IMAGE_NAME} with ${CORE_VERSION}"
         docker build -f ${IMAGE_NAME}/Dockerfile.windows --build-arg OSVERSION=ltsc${{ matrix.windows_version }} --build-arg COREVERSION=${CORE_VERSION} --tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${IMAGE_NAME}
-        docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${{ env.REGISTRY }}/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
-        docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} dtrajd/${{ github.repository }}-${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
+        docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${{ env.REGISTRY }}/${{ github.repository }}-${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
+        docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} dtrajd/-${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         docker push ${{ env.REGISTRY }}/${{ github.repository }}-${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         #docker push dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
