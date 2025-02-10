@@ -22,6 +22,7 @@ jobs:
     strategy:
       matrix:
         windows_version: ["2019", "2022"]
+      fail-fast: false
     runs-on: "windows-${{ matrix.windows_version }}"
     steps:
     - name: Setup Msys2
@@ -39,11 +40,11 @@ jobs:
         registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    #- name: Log in to Docker Hub
-    #  uses: docker/login-action@v3
-    #  with:
-    #    username: ${{ secrets.DOCKER_USERNAME }}
-    #    password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Docker Build
       id: docker_build
       run: |
@@ -55,7 +56,7 @@ jobs:
         docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${{ env.REGISTRY }}/${{ github.repository }}-${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         docker push ${{ env.REGISTRY }}/${{ github.repository }}-${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
-        #docker push dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
+        docker push dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
 
         CORE_VERSION=v2.15.0
         IMAGE_NAME=livenessprobe
@@ -64,7 +65,7 @@ jobs:
         docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${{ env.REGISTRY }}/${{ github.repository }}-${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         docker push ${{ env.REGISTRY }}/${{ github.repository }}-${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
-        #docker push dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
+        docker push dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
 
         CORE_VERSION=v2.13.0
         IMAGE_NAME=node-driver-registrar
@@ -73,4 +74,4 @@ jobs:
         docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} ${{ env.REGISTRY }}/${{ github.repository }}-${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         docker tag ${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION} dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
         docker push ${{ env.REGISTRY }}/${{ github.repository }}-${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
-        #docker push dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
+        docker push dtrajd/${IMAGE_NAME}:${{ matrix.windows_version }}-${CORE_VERSION}
